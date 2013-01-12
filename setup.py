@@ -9,6 +9,7 @@ setup(
     description="Django Contact Form Application",
     author="Guillaume Luchet",
     author_email="guillaume@geelweb.org",
+    namespace_packages = ['geelweb', 'geelweb.django'],
     packages=find_packages('src'),
     package_dir = {'':'src'},
     url="http://geelweb.org",
