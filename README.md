@@ -1,5 +1,9 @@
 # Django ContactForm Application
 
+## Demo
+
+A demo is available [here](http://django-sandbox.geelweb.org/contact)
+
 ## Installation
 
 From Source:
