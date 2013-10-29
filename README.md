@@ -6,10 +6,13 @@ A demo is available [here](http://django-sandbox.geelweb.org/contact)
 
 ## Installation
 
+From PyPI
+
+    pip install django-contactform
+
 From Source:
 
-    python setup.py build
-	sudo python setup.py install
+	python setup.py install
 
 
 ## Configuration
