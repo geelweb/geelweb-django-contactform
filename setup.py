@@ -34,7 +34,8 @@ setup(
     package_dir={"":"src"},
     package_data = {
         'geelweb.django.contactform': [
-            'locale/*/LC_MESSAGES/*.po'
+            'locale/*/LC_MESSAGES/*.po',
+            'locale/*/LC_MESSAGES/*.mo'
         ],
     },
     keywords=['django', 'contact', 'form']
