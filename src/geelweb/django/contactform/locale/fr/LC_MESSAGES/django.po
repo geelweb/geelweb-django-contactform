@@ -1,0 +1,35 @@
+# Django ContactForm App.
+# Copyright (C) 2014
+# This file is distributed under the same license as the contactform package.
+# Guillaume Luchet <guillaume@geelweb.org>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-25 23:07+0100\n"
+"PO-Revision-Date: 2014-11-25 23:08:02\n"
+"Last-Translator: Guillaume Luchet <guillaume@geelweb.org>\n"
+"Language-Team: Guillaume Luchet <guillaume@geelweb.org>\n"
+"Language: FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:14
+msgid "Subject"
+msgstr "Sujet"
+
+#: models.py:15
+msgid "Message"
+msgstr "Message"
+
+#: models.py:16
+msgid "Sender email"
+msgstr "Email"
+
+#: models.py:17
+msgid "Send me a copy"
+msgstr "M'envoyer une copie"

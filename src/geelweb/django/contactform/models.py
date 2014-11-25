@@ -7,11 +7,12 @@
 """Django contactform models"""
 
 from django import forms
+from django.utils.translation import ugettext as _
 
 class ContactForm(forms.Form):
     """Contact form"""
-    subject = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
-    sender = forms.EmailField()
-    cc_myself = forms.BooleanField(required=False)
+    subject = forms.CharField(label=_('Subject'), max_length=100)
+    message = forms.CharField(label=_('Message'), widget=forms.Textarea)
+    sender = forms.EmailField(label=_('Sender email'))
+    cc_myself = forms.BooleanField(label=_('Send me a copy'), required=False)
 
