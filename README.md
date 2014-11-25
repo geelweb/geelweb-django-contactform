@@ -37,13 +37,13 @@ Then define the following configuration properties
 
 Edit your urls.py and add the following line
 
-	url(r'^contact$', 'geelweb.django.contactform.views.contact', name='contact'),
+	url(r'^contact/$', 'geelweb.django.contactform.views.contact', name='contact'),
 
 ### templates
 
 Create a contactform/contact.html template
 
-    <form action="{% url contact %}" method="post">
+    <form action="{% url 'contact' %}" method="post">
 	    {% csrf_token %}
 	    {{ form.as_p }}
 	    <input type="submit" value="Submit" />
