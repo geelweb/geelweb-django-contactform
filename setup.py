@@ -32,6 +32,6 @@ setup(
     namespace_packages = ["geelweb", "geelweb.django"],
     packages=find_packages("src"),
     package_dir={"":"src"},
-    keywords=['django', 'contact', 'form'],
-    )
+    keywords=['django', 'contact', 'form']
+)
 
