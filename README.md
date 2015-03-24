@@ -1,8 +1,10 @@
 # Django ContactForm Application
 
+Display a basic contact form.
+
 ## Demo
 
-A demo is available [here](http://django-sandbox.geelweb.org/contact)
+A demo is available [here](http://django.sandbox.geelweb.org/contact)
 
 ## Installation
 
@@ -19,16 +21,18 @@ From Source:
 
 ### settings.py
 
-Edit your settings.py file and add the following line into your INSTALLED_APPS
+Edit your settings.py file and add `geelweb.django.contactform` to the `INSTALLED_APPS`
 
-	'geelweb.django.contactform'
+Settings properties
 
-Then define the following configuration properties
+*CONTACTFORM_RECIPIENTS*: list of email address the messages will be sent.
 
 	CONTACTFORM_RECIPIENTS = [
 	    'yourname@example.com',
 	    'anotherperson@example.com'
 	    ]
+
+*CONTACTFORM_SUBJECT_PREFIX*: A prefix to add to the email subject
 
 	CONTACTFORM_SUBJECT_PREFIX = 'mail from contactform'
 
