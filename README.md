@@ -62,3 +62,9 @@ Then a contactform/thanks.html template
 ### django.core.mail
 
 Finaly check you configured django.core.mail https://docs.djangoproject.com/en/dev/topics/email/
+
+## Testing
+
+Run unit-tests
+
+    python tests/runtests.py

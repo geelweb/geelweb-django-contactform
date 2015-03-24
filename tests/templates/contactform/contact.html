@@ -1,0 +1,7 @@
+<h1>Send us a message</h1>
+<form action="{% url 'contact' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+
