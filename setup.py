@@ -13,9 +13,7 @@ from setuptools import setup, find_packages
 author_data = __author__.split(" ")
 maintainer = " ".join(author_data[0:-1])
 maintainer_email = author_data[-1]
-README = open("README.md").read()
-if os.path.exists("README.txt"):
-    README = open("README.txt").read()
+README = open("README.rst").read()
 
 setup(
     name="django-contactform",
