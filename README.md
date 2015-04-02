@@ -1,6 +1,7 @@
 # Django ContactForm Application
 
-![Build status](https://travis-ci.org/geelweb/geelweb-django-contactform.svg?branch=master)
+![Build status](https://travis-ci.org/geelweb/geelweb-django-contactform.svg?branch=master) [![Documentation Status](https://readthedocs.org/projects/django-contactform/badge/?version=latest)](https://readthedocs.org/projects/django-contactform/?badge=latest)
+
 
 Display a basic contact form.
 
