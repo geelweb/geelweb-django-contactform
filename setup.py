@@ -5,7 +5,7 @@
 # vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4:
 
 __author__ = "Guillaume Luchet <guillaume@geelweb.org>"
-__version__ = "0.2.1"
+__version__ = "0.2.2"
 
 import os, sys
 from setuptools import setup, find_packages
