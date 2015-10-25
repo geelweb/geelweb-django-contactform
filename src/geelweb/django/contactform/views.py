@@ -4,8 +4,7 @@
 # License: MIT
 # vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4:
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.conf import settings
 from django.core.mail import send_mail
 from geelweb.django.contactform.models import ContactForm
@@ -25,13 +24,7 @@ def contact(request):
 
         send_mail(getattr(settings, "CONTACTFORM_SUBJECT_PREFIX", '') + subject, message, sender, recipients)
 
-        return render_to_response(
-            'contactform/thanks.html',
-            {},
-            context_instance=RequestContext(request))
+        return render(request, 'contactform/thanks.html')
 
-    return render_to_response(
-            'contactform/contact.html',
-            {'form': form},
-            context_instance=RequestContext(request))
+    return render( request, 'contactform/contact.html', {'form': form})
 
