@@ -1,0 +1,58 @@
+{% load i18n widget_tweaks %}
+
+<form method="POST" action="{% url 'contactform:index' %}">
+    {% csrf_token %}
+    {{ form.next }}
+
+    <fieldset>
+
+      <h3>{% trans "Contact us" %}</h3>
+
+      {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          {% trans "The form has errors" %}
+        </div>
+		  {% endif %}
+
+      <div class="form-group{% if form.errors.email %} is-invalid{% endif %}">
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email|add_class:"form-control" }}
+        {% if form.errors.email %}
+          <div class="invalid-feedback">
+            {% for error_msg in form.errors.email %}
+              {{ error_msg }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{% if form.errors.phone %} is-invalid{% endif %}">
+        <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+        {{ form.phone|add_class:"form-control" }}
+        {% if form.errors.phone %}
+          <div class="invalid-feedback">
+            {% for error_msg in form.errors.phone %}
+              {{ error_msg }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="form-group{% if form.errors.comment %} is-invalid{% endif %}">
+        <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+        {{ form.comment|add_class:"form-control" }}
+        {% if form.errors.comment %}
+          <div class="invalid-feedback">
+            {% for error_msg in form.errors.comment %}
+              {{ error_msg }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+  </fieldset>
+
+  <button class="btn btn-primary" type="submit">{% trans "Submit" %}</button>
+
+</form>
+

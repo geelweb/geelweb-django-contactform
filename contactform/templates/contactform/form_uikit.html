@@ -1,0 +1,49 @@
+{% load i18n widget_tweaks %}
+
+<form method="POST" action="{% url 'contactform:index' %}">
+    {% csrf_token %}
+    {{ form.next }}
+
+    <fieldset class="uk-fieldset">
+
+      <h3>{% trans "Contact us" %}</h3>
+
+      {% if form.errors %}
+        {% trans "The form has errors" %}
+		  {% endif %}
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        {{ form.email|add_class:"uk-input"|add_error_class:"uk-form-danger" }}
+        {% if form.errors.email %}
+	  			{% for error_msg in form.errors.email %}
+            {{ error_msg }}
+			  	{% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+        {{ form.phone|add_class:"uk-input"|add_error_class:"uk-form-danger" }}
+        {% if form.errors.phone %}
+          {% for error_msg in form.errors.phone %}
+            {{ error_msg }}
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+        {{ form.comment|add_class:"uk-textarea"|add_error_class:"uk-form-danger" }}
+        {% if form.errors.email %}
+				  {% for error_msg in form.errors.comment %}
+            {{ error_msg }}
+				  {% endfor %}
+        {% endif %}
+      </div>
+
+  </fieldset>
+
+  <button class="uk-button uk-button-primary" type="submit">{% trans "Submit" %}</button>
+
+</form>

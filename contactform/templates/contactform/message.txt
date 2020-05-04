@@ -1,0 +1,11 @@
+{% load i18n %}
+{% trans "New message from {{ site.name }}" %}
+
+{% trans "email" %}: {{ email }}
+{% trans "phone" %}: {{ phone }}
+
+{% trans "Comment" %}:
+--------------------------
+
+{{ comment }}
+

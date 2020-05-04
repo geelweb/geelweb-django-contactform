@@ -1,0 +1,9 @@
+{% load i18n %}
+
+<h3>{% trans "Contact us" %}</h3>
+
+<form method="POST" action="{% url 'contactform:index' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">{% trans "Submit" %}</button>
+</form>
