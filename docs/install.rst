@@ -2,9 +2,11 @@
 Installation
 ============
 
-You can install django-contactform with pip::
+You can install django-contactform with pip
 
-  pip install django-contactform
+.. code-block:: text
+
+    pip install django-contactform
 
 Requirements
 ------------
@@ -13,37 +15,43 @@ Requirements
 
 Ensure the Django messages framework is enabled on your project https://docs.djangoproject.com/en/3.0/ref/contrib/messages/
 
-*django-widget-tweaks*
-
-django-widget-tweaks is required to manage css classes of input fields https://pypi.org/project/django-widget-tweaks/
-
 
 Enable the app
 --------------
 
-1. Add 'contactform' to your `INSTALLED_APPS` settings::
+1. Add 'contactform' to your `INSTALLED_APPS` settings
+
+.. code-block:: python
 
     INSTALLED_APPS = [
         ...
-       'widget_tweaks',
        'contactform',
     ]
 
-3. Configure the recipients of your form in your settings::
+3. Configure the recipients of your form in your settings
 
-   CONTACTFORM_RECIPIENTS = ['me@example.com']
+.. code-block:: python
 
-4. Include the contactform URLconf in your project urls.py like::
+    CONTACTFORM_RECIPIENTS = ['me@example.com']
 
-   path('contact/', include('contactform.urls')),
+4. Include the contactform URLconf in your project urls.py like
 
-5. Add a form to an existing page using the `contact_form` template tag::
+.. code-block:: python
 
-   {% load contact_form %}
+    path('contact/', include('contactform.urls')),
 
-   {% contact_form %}
+5. Add a form to an existing page using the `contact_form` template tag
 
-or add a link to the contact page::
+.. code-block:: python
 
-   <a href="{% url 'contactform:index' %}">Contact us</a>
+    {% load contact_form %}
+
+    {% contact_form %}
+
+
+or add a link to the contact page
+
+.. code-block:: html
+
+    <a href="{% url 'contactform:index' %}">Contact us</a>
 

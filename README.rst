@@ -11,34 +11,42 @@ Detailed documentation is in the "docs" directory.
 Quick start
 -----------
 
-1. Install the app using pip::
+1. Install the app using pip
 
-   pip install django-contactform
+.. code-block:: text
 
-Additionaly you have to install [django-widget-tweaks](https://pypi.org/project/django-widget-tweaks/)
+    pip install django-contactform
 
 
-2. Add 'contactform' and 'widget_tweaks' to your `INSTALLED_APPS` settings like this::
+2. Add 'contactform' to your `INSTALLED_APPS` settings like this
 
-   INSTALLED_APPS = [
-       ...
-       'widget_tweaks',
-       'contactform',
-   ]
+.. code-block:: python
 
-3. Configure the recipients of your form in your settings::
+    INSTALLED_APPS = [
+        ...
+        'contactform',
+    ]
 
-   CONTACTFORM_RECIPIENTS = ['me@example.com']
+3. Configure the recipients of your form in your settings
 
-4. Include the contactform URLconf in your project urls.py like::
+.. code-block:: python
 
-   path('contact/', include('contactform.urls')),
+    CONTACTFORM_RECIPIENTS = ['me@example.com']
 
-5. Add a form to your page using the `contact_form` template tag::
+4. Include the contactform URLconf in your project urls.py like
 
-   {% load contact_form %}
+.. code-block:: python
 
-   {% contact_form %}
+    path('contact/', include('contactform.urls')),
+
+5. Add a form to your page using the `contact_form` template tag
+
+.. code-block:: python
+
+    {% load contact_form %}
+
+    {% contact_form %}
+
 
 .. |Build status| image:: https://travis-ci.org/geelweb/geelweb-django-contactform.svg?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/django-contactform/badge/?version=latest
