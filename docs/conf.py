@@ -21,6 +21,8 @@ project = 'django-contactform'
 copyright = '2020, Guillaume Luchet'
 author = 'Guillaume Luchet'
 
+master_doc = 'index'
+
 # The full version, including alpha/beta/rc tags
 release = '2.0.0'
 
