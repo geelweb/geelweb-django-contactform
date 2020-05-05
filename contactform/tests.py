@@ -1,6 +1,8 @@
 from django.core import mail
-from django.test import TestCase, override_settings
+from django.template import Template, RequestContext
+from django.test import RequestFactory, TestCase, override_settings
 from django.urls import reverse
+from .forms import ContactForm
 
 class ContactTestCase(TestCase):
     def test_form_displayed(self):
@@ -73,3 +75,42 @@ class ContactTestCase(TestCase):
 
         self.assertEqual(len(mail.outbox), 1)
         self.assertRedirects(resp, '/')
+
+class ContagFormTagTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_tag_without_param(self):
+        tpl = Template("{% load contact_form %}{% contact_form %}")
+
+        content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+        self.assertInHTML('<input type="text" name="email" placeholder="Your email address" required id="id_email">', content)
+        self.assertInHTML('<input type="text" name="phone" placeholder="+33..." required id="id_phone">', content)
+        self.assertInHTML('<textarea name="comment" cols="80" rows="8" placeholder="Your message" required id="id_comment"></textarea>', content)
+        self.assertInHTML('<input type="hidden" name="next" id="id_next">', content)
+
+    def test_tag_with_form_param(self):
+        tpl = Template("{% load contact_form %}{% contact_form form %}")
+
+        form = ContactForm(initial={
+            'email': 'me@example.com',
+            'phone': '06 12 34 56 78',
+            'comment': 'Plop',
+            'next': '/'})
+
+        content = tpl.render(RequestContext(self.factory.get('/contact'), {'form': form}))
+        self.assertInHTML('<input type="text" name="email" placeholder="Your email address" required id="id_email" value="me@example.com">', content)
+        self.assertInHTML('<input type="text" name="phone" placeholder="+33..." required id="id_phone" value="06 12 34 56 78">', content)
+        self.assertInHTML('<textarea name="comment" cols="80" rows="8" placeholder="Your message" required id="id_comment">Plop</textarea>', content)
+        self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/">', content)
+
+    def test_tag_with_next_arg(self):
+        tpl = Template("""{% load contact_form %}{% contact_form next="/"%}""")
+
+        content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+        self.assertInHTML('<input type="text" name="email" placeholder="Your email address" required id="id_email">', content)
+        self.assertInHTML('<input type="text" name="phone" placeholder="+33..." required id="id_phone">', content)
+        self.assertInHTML('<textarea name="comment" cols="80" rows="8" placeholder="Your message" required id="id_comment"></textarea>', content)
+        self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/">', content)
+
+

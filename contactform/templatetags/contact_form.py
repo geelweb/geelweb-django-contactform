@@ -6,9 +6,12 @@ from contactform.forms import ContactForm
 register = template.Library()
 
 @register.simple_tag(takes_context=True)
-def contact_form(context, form=None):
+def contact_form(context, form=None, *args, **kwargs):
     if form is None:
-        form = ContactForm()
+        next_url = kwargs['next'] if 'next' in kwargs else None
+        form = ContactForm(initial={
+            'next': next_url
+            })
 
     template_name = 'contactform/form.html'
     framework = getattr(settings, 'CONTACTFORM_FRONTEND_FRAMEWORK', None)
