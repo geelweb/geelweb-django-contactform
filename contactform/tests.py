@@ -91,6 +91,11 @@ class ContactTestCase(TestCase):
         self.assertContains(resp, 'Your message has been sent', status_code=200)
         self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/custom/">', u"%s" % resp.content)
 
+    @override_settings(CONTACTFORM_DISPLAY_FORM_TITLE=False)
+    def test_form_title_not_displayed(self):
+        resp = self.client.get(reverse('contactform:index'))
+        self.assertContains(resp, 'csrfmiddlewaretoken', status_code=200)
+        self.assertNotContains(resp, '<h3>Contact us</h3>', status_code=200)
 
 
 class ContagFormTagTest(TestCase):

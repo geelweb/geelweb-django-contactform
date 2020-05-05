@@ -6,7 +6,9 @@
 
     <fieldset class="uk-fieldset">
 
+      {% if display_form_title %}
       <h3>{% trans "Contact us" %}</h3>
+      {% endif %}
 
       {% if form.errors %}
         {% trans "The form has errors" %}

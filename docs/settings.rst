@@ -58,3 +58,10 @@ CONTACTFORM_USE_THANKS_PAGE
 Default: True
 
 Display a confirmation page when the form is submited
+
+CONTACTFORM_DISPLAY_FORM_TITLE
+------------------------------
+
+Default: True
+
+Display a title before the form.

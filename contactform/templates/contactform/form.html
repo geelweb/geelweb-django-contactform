@@ -1,6 +1,8 @@
 {% load i18n %}
 
+{% if display_form_title %}
 <h3>{% trans "Contact us" %}</h3>
+{% endif %}
 
 <form method="POST" action="{% url 'contactform:index' %}">
   {% csrf_token %}
