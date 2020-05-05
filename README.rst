@@ -4,7 +4,7 @@ ContactForm
 
 |Build status| |Documentation Status|
 
-Django app to manage simple contact form
+Django app to manage simple contact form On Django >= 3 projects.
 
 Detailed documentation is in the "docs" directory.
 
