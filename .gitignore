@@ -1,4 +1,2 @@
 __pycache__
 *.swp
-dist/
-django_contactform.egg-info/
