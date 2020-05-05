@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import send_mail
+from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import ContactForm
@@ -31,16 +31,18 @@ def index(request):
                     getattr(settings, 'CONTACTFORM_SUBJECT', _('New message')),
                     message,
                     email,
-                    recipients)
+                    recipients,
+                    fail_silently=False)
         except BadHeaderError:
              return HttpResponse('Invalid header found.')
 
 
+        messages.success(request, _('Your message has been sent.'), extra_tags='contactform')
+
         if next != '':
-            messages.success(request, _('Your message has been sent.'))
             return redirect(next)
 
-        use_thanks_page = getattr(settings, 'CONTACTFORM_USE_THANKS_PAGE', True),
+        use_thanks_page = getattr(settings, 'CONTACTFORM_USE_THANKS_PAGE', True)
         if use_thanks_page:
             return render(request, 'contactform/thanks.html')
 

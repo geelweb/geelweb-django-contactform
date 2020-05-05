@@ -45,6 +45,7 @@ class ContactTestCase(TestCase):
         self.assertEqual(len(mail.outbox), 1)
 
         self.assertEqual(mail.outbox[0].subject, 'New message')
+        self.assertIn('New message from testserver', mail.outbox[0].body)
         self.assertIn('06 00 00 00 00', mail.outbox[0].body)
         self.assertIn('This is my message content', mail.outbox[0].body)
         self.assertEqual(mail.outbox[0].from_email, 'me@example.com')
@@ -64,7 +65,7 @@ class ContactTestCase(TestCase):
                 'email': 'me@example.com',
                 'phone': '06 00 00 00 00',
                 'comment': 'This is my message content'})
-            self.assertContains(resp, 'Contact us', status_code=200)
+            self.assertNotContains(resp, 'Thanks for your message', status_code=200)
 
     def test_next_param(self):
         resp = self.client.post(reverse('contactform:index'), {
@@ -75,6 +76,22 @@ class ContactTestCase(TestCase):
 
         self.assertEqual(len(mail.outbox), 1)
         self.assertRedirects(resp, '/')
+
+    def test_cutom_contact_page(self):
+        resp = self.client.get('/custom/')
+        self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/custom/">', u"%s" % resp.content)
+
+        resp = self.client.post(reverse('contactform:index'), {
+            'email': 'me@example.com',
+            'phone': '06 00 00 00 00',
+            'comment': 'This is my message content',
+            'next': '/custom/'}, follow=True)
+        self.assertRedirects(resp, '/custom/')
+
+        self.assertContains(resp, 'Your message has been sent', status_code=200)
+        self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/custom/">', u"%s" % resp.content)
+
+
 
 class ContagFormTagTest(TestCase):
     def setUp(self):

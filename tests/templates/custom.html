@@ -1,0 +1,22 @@
+{% load contact_form %}
+<html>
+  <head>
+    <title>Custom contact page</title>
+  </head>
+  <body>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        {% if "contactform" in message.tags %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% contact_form next="/custom/" %}
+  </body>
+</html>
