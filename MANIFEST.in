@@ -1,4 +1,5 @@
 include LICENSE.rst
 include README.rst
 recursive-include contactform/templates *
+recursive-include contactform/locale *
 recursive-include docs *
