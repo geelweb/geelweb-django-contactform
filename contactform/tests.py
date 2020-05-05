@@ -7,15 +7,18 @@ class ContactTestCase(TestCase):
         """ Tests than the contact.html template is displayed
         """
         resp = self.client.get(reverse('contactform:index'))
+        self.assertContains(resp, 'csrfmiddlewaretoken', status_code=200)
         self.assertContains(resp, 'Contact us', status_code=200)
 
         with self.settings(CONTACTFORM_FRONTEND_FRAMEWORK='uikit'):
             resp = self.client.get(reverse('contactform:index'))
+            self.assertContains(resp, 'csrfmiddlewaretoken', status_code=200)
             self.assertContains(resp, 'Contact us', status_code=200)
             self.assertContains(resp, 'uk-input')
 
         with self.settings(CONTACTFORM_FRONTEND_FRAMEWORK='bootstrap'):
             resp = self.client.get(reverse('contactform:index'))
+            self.assertContains(resp, 'csrfmiddlewaretoken', status_code=200)
             self.assertContains(resp, 'Contact us', status_code=200)
             self.assertContains(resp, 'form-control')
 

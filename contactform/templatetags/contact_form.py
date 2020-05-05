@@ -19,5 +19,5 @@ def contact_form(context, form=None):
         template_name = 'contactform/form_uikit.html'
 
     t = context.template.engine.get_template(template_name)
-    return t.render(template.Context({'form': form}, autoescape=context.autoescape))
+    return t.render(template.RequestContext(context.request, {'form': form}, autoescape=context.autoescape))
 
