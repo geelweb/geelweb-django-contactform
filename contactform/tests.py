@@ -88,7 +88,7 @@ class ContactTestCase(TestCase):
             'next': '/custom/'}, follow=True)
         self.assertRedirects(resp, '/custom/')
 
-        self.assertContains(resp, 'Your message has been sent', status_code=200)
+        self.assertContains(resp, 'Your message has been sent.', status_code=200)
         self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/custom/">', u"%s" % resp.content)
 
     @override_settings(CONTACTFORM_DISPLAY_FORM_TITLE=False)

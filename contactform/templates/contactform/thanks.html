@@ -4,5 +4,15 @@
 {% block content %}
   <h1>{% trans "Thanks for your message" %}</h1>
 
-  <div>{% trans "Your message has been sent" %}</div>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      {% if "contactform" in message.tags %}
+        <li{% if message.level_tag %} class="{{ message.level_tag }}"{% endif %}>
+          {{ message }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% endif %}
 {% endblock %}

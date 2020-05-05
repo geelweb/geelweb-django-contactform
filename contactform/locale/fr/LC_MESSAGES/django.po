@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-05 19:00+0200\n"
+"POT-Creation-Date: 2020-05-05 19:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,72 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: forms.py:6
+#: contactform/forms.py:6 contactform/templates/contactform/message.txt:4
 msgid "Email"
 msgstr "Couriel"
 
-#: forms.py:9
+#: contactform/forms.py:9
 msgid "Your email address"
 msgstr "Votre adresse de couriel"
 
-#: forms.py:14
+#: contactform/forms.py:14 contactform/templates/contactform/message.txt:5
 msgid "Phone"
 msgstr "Téléphone"
 
-#: forms.py:17
+#: contactform/forms.py:17
 msgid "+33..."
 msgstr "+33..."
 
-#: forms.py:22 templates/contactform/message.txt:7
+#: contactform/forms.py:22 contactform/templates/contactform/message.txt:7
 msgid "Comment"
 msgstr "Message"
 
-#: forms.py:25
+#: contactform/forms.py:25
 msgid "Your message"
 msgstr "Votre message"
 
-#: templates/contactform/base.html:4 templates/contactform/form.html:3
-#: templates/contactform/form_bootstrap.html:9
-#: templates/contactform/form_uikit.html:9
+#: contactform/templates/contactform/base.html:4
+#: contactform/templates/contactform/form.html:4
+#: contactform/templates/contactform/form_bootstrap.html:10
+#: contactform/templates/contactform/form_uikit.html:10
 msgid "Contact us"
 msgstr "Nous contacter"
 
-#: templates/contactform/form.html:8
-#: templates/contactform/form_bootstrap.html:55
-#: templates/contactform/form_uikit.html:47
+#: contactform/templates/contactform/form.html:10
+#: contactform/templates/contactform/form_bootstrap.html:57
+#: contactform/templates/contactform/form_uikit.html:49
 msgid "Submit"
 msgstr "Envoyer"
 
-#: templates/contactform/form_bootstrap.html:13
-#: templates/contactform/form_uikit.html:12
+#: contactform/templates/contactform/form_bootstrap.html:15
+#: contactform/templates/contactform/form_uikit.html:14
 msgid "The form has errors"
 msgstr "Le formulaire contient des erreurs"
 
-#: templates/contactform/message.txt:2
+#: contactform/templates/contactform/message.txt:2
 #, python-format
 msgid "New message from %(site)s"
 msgstr "Nouveau message du site %(site)s"
 
-#: templates/contactform/message.txt:4
-msgid "email"
-msgstr "couriel"
-
-#: templates/contactform/message.txt:5
-msgid "phone"
-msgstr "téléphone"
-
-#: templates/contactform/thanks.html:5
+#: contactform/templates/contactform/thanks.html:5
 msgid "Thanks for your message"
 msgstr "Merci pour votre message"
 
-#: templates/contactform/thanks.html:7
-msgid "Your message has been sent"
-msgstr "Votre message a été envoyé"
-
-#: views.py:31
+#: contactform/views.py:31
 msgid "New message"
 msgstr "Nouveau message"
 
-#: views.py:40
+#: contactform/views.py:40
 msgid "Your message has been sent."
 msgstr "Votre message a été envoyé."
+

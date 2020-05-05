@@ -1,8 +1,8 @@
 {% load i18n %}
 {% blocktrans %}New message from {{ site }}{% endblocktrans %}
 
-{% trans "email" %}: {{ email }}
-{% trans "phone" %}: {{ phone }}
+{% trans "Email" %}: {{ email }}
+{% trans "Phone" %}: {{ phone }}
 
 {% trans "Comment" %}:
 --------------------------
