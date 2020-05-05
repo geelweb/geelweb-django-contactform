@@ -57,6 +57,13 @@ class ContactTestCase(TestCase):
                 'comment': 'This is my message content'})
             self.assertEqual(mail.outbox[1].subject, 'My custom subject')
 
+        with self.settings(CONTACTFORM_USE_THANKS_PAGE=False):
+            resp = self.client.post(reverse('contactform:index'), {
+                'email': 'me@example.com',
+                'phone': '06 00 00 00 00',
+                'comment': 'This is my message content'})
+            self.assertContains(resp, 'Contact us', status_code=200)
+
     def test_next_param(self):
         resp = self.client.post(reverse('contactform:index'), {
             'email': 'me@example.com',

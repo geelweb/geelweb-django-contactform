@@ -51,3 +51,10 @@ The front-end framework to use to render the form. Available values are
 If ``None`` the form will be rendered using Django stantart ``form.as_p``
 
 If ``bootstrap`` or ``uikit`` django-widget-tweaks is required to manage css classes of input fields https://pypi.org/project/django-widget-tweaks/
+
+CONTACTFORM_USE_THANKS_PAGE
+---------------------------
+
+Default: True
+
+Display a confirmation page when the form is submited

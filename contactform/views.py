@@ -40,7 +40,9 @@ def index(request):
             messages.success(request, _('Your message has been sent.'))
             return redirect(next)
 
-        return render(request, 'contactform/thanks.html')
+        use_thanks_page = getattr(settings, 'CONTACTFORM_USE_THANKS_PAGE', True),
+        if use_thanks_page:
+            return render(request, 'contactform/thanks.html')
 
     return render(request, 'contactform/contact.html', {
         'form': form})
