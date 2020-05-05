@@ -1,5 +1,5 @@
 {% load i18n %}
-{% trans "New message from {{ site.name }}" %}
+{% blocktrans %}New message from {{ site }}{% endblocktrans %}
 
 {% trans "email" %}: {{ email }}
 {% trans "phone" %}: {{ phone }}
