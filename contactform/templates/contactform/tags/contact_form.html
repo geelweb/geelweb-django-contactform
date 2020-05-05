@@ -1,0 +1,8 @@
+{% if framework == "uikit" %}
+  {% include "contactform/form_uikit.html" %}
+{% elif framework == "bootstrap" %}
+  {% include "contactform/form_bootstrap.html" %}
+{% else %}
+  {% include "contactform/form.html" %}
+{% endif %}
+
