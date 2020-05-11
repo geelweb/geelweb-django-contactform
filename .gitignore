@@ -1,2 +1,10 @@
 __pycache__
 *.swp
+
+
+.coverage
+build/
+dist/
+django_contactform.egg-info/
+docs/_build/
+htmlcov/
