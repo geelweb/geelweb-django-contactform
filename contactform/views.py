@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import BadHeaderError, send_mail
+from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import ContactForm
@@ -27,12 +27,13 @@ def index(request):
 
         recipients = settings.CONTACTFORM_RECIPIENTS
         try:
-            send_mail(
+            email = EmailMessage(
                     getattr(settings, 'CONTACTFORM_SUBJECT', _('New message')),
                     message,
-                    email,
+                    getattr(settings, 'CONTACTFORM_FROM_EMAIL', settings.DEFAULT_FROM_EMAIL),
                     recipients,
-                    fail_silently=False)
+                    reply_to=[email])
+            email.send(fail_silently=False)
         except BadHeaderError:
              return HttpResponse('Invalid header found.')
 

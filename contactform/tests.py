@@ -48,7 +48,8 @@ class ContactTestCase(TestCase):
         self.assertIn('New message from testserver', mail.outbox[0].body)
         self.assertIn('06 00 00 00 00', mail.outbox[0].body)
         self.assertIn('This is my message content', mail.outbox[0].body)
-        self.assertEqual(mail.outbox[0].from_email, 'me@example.com')
+        self.assertEqual(mail.outbox[0].from_email, 'webmaster@localhost')
+        self.assertEqual(mail.outbox[0].reply_to, ['me@example.com'])
         self.assertEqual(mail.outbox[0].to, ['contact@example.com'])
 
         self.assertContains(resp, 'Thanks for your message', status_code=200)
@@ -66,6 +67,13 @@ class ContactTestCase(TestCase):
                 'phone': '06 00 00 00 00',
                 'comment': 'This is my message content'})
             self.assertNotContains(resp, 'Thanks for your message', status_code=200)
+
+        with self.settings(CONTACTFORM_FROM_EMAIL='noreply@example.com'):
+            resp = self.client.post(reverse('contactform:index'), {
+                'email': 'me@example.com',
+                'phone': '06 00 00 00 00',
+                'comment': 'This is my message content'})
+            self.assertEqual(mail.outbox[3].from_email, 'noreply@example.com')
 
     def test_next_param(self):
         resp = self.client.post(reverse('contactform:index'), {
@@ -98,7 +106,7 @@ class ContactTestCase(TestCase):
         self.assertNotContains(resp, '<h3>Contact us</h3>', status_code=200)
 
 
-class ContagFormTagTest(TestCase):
+class ContactFormTagTest(TestCase):
     def setUp(self):
         self.factory = RequestFactory()
 
