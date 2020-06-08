@@ -15,6 +15,17 @@ Example:
 
     CONTACTFORM_RECIPIENTS = ['me@example.com', 'somebody@example.com']
 
+CONTACTFORM_FROM_EMAIL
+----------------------
+
+Default: ``settings.DEFAULT_FROM_EMAIL``
+
+Example:
+
+.. code-block:: python
+
+    CONTACTFORM_FROM_EMAIL = 'noreply@example.com'
+
 CONTACTFORM_SUBJECT
 -------------------
 
