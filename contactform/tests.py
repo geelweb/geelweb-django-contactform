@@ -144,3 +144,34 @@ class ContactFormTagTest(TestCase):
         self.assertInHTML('<input type="hidden" name="next" id="id_next" value="/">', content)
 
 
+class ContactFormBtnTagTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    def test_tag(self):
+        tpl = Template("""{% load contact_form %}{% contact_form_btn label="Submit" form_id="contact-form" %}""")
+
+        content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+        self.assertInHTML('<button type="submit">Submit</button>', content)
+
+        with self.settings(CONTACTFORM_FRONTEND_FRAMEWORK='uikit'):
+            content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+            self.assertInHTML('<button class="uk-button uk-button-primary" type="submit">Submit</button>', content)
+
+        with self.settings(CONTACTFORM_FRONTEND_FRAMEWORK='bootstrap'):
+            content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+            self.assertInHTML('<button class="btn btn-primary" type="submit">Submit</button>', content)
+
+    @override_settings(GOOGLE_RECAPTCHA_ENABLED=True)
+    @override_settings(GOOGLE_RECAPTCHA_SITE_KEY='plop')
+    def test_recaptcha(self):
+        tpl = Template("""{% load contact_form %}{% contact_form_btn label="Submit" form_id="contact-form" %}""")
+
+        content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+        self.assertInHTML('<button class="g-recaptcha" data-sitekey="plop" data-callback="onDjangoContactFormSubmit" data-action="submit">Submit</button>', content)
+        self.assertInHTML('<script>function onDjangoContactFormSubmit(token) { document.getElementById("contact-form").submit(); }</script>', content)
+
+        with self.settings(CONTACTFORM_FRONTEND_FRAMEWORK='bootstrap'):
+            content = tpl.render(RequestContext(self.factory.get('/contact'), {}))
+            self.assertInHTML('<button class="btn btn-primary g-recaptcha" data-sitekey="plop" data-callback="onDjangoContactFormSubmit" data-action="submit">Submit</button>', content)
+            self.assertInHTML('<script>function onDjangoContactFormSubmit(token) { document.getElementById("contact-form").submit(); }</script>', content)

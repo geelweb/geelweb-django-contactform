@@ -76,3 +76,17 @@ CONTACTFORM_DISPLAY_FORM_TITLE
 Default: True
 
 Display a title before the form.
+
+GOOGLE_RECAPTCHA_ENABLED
+------------------------
+
+Default: False
+
+True to enable Google recaptcha
+
+GOOGLE_RECAPTCHA_SITE_KEY
+-------------------------
+
+Default: ''
+
+Your Google recaptcha site key
