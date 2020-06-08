@@ -1,11 +1,13 @@
-{% load i18n %}
+{% load i18n contact_form %}
 
 {% if display_form_title %}
 <h3>{% trans "Contact us" %}</h3>
 {% endif %}
 
-<form method="POST" action="{% url 'contactform:index' %}">
+<form id="contact-form" method="POST" action="{% url 'contactform:index' %}">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">{% trans "Submit" %}</button>
+
+  {% trans "Submit" as the_btn_label %}
+  {% contact_form_btn label=the_btn_label form_id="contact-form" %}
 </form>
