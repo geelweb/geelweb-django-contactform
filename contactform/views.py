@@ -5,7 +5,7 @@ from django.core.mail import BadHeaderError, EmailMessage
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .forms import ContactForm
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.template.loader import render_to_string
 
 def index(request):

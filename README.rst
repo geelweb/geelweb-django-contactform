@@ -48,6 +48,33 @@ Quick start
     {% contact_form %}
 
 
+Contribute
+----------
+
+Run tests locally using the last version of requirements defined in the `setup.py` file
+
+.. code-block:: text
+
+    python3 -m venv venv
+    source venv/bin/activate
+
+    python3 setup.py install
+
+    python3 runtests.py
+
+Run tests using a specific version of Django
+
+.. code-block:: text
+
+    python3 -m venv venv_django3
+    source venv_django3/bin/activate
+    pip install Django==3.0
+
+    python3 setup.py install
+
+    python3 runtests.py
+
+
 .. |Build status| image:: https://travis-ci.org/geelweb/geelweb-django-contactform.svg?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/django-contactform/badge/?version=latest
    :target: https://readthedocs.org/projects/django-contactform/?badge=latest
