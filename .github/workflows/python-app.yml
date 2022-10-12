@@ -16,6 +16,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        django-version: [3.2, 4.0, 4.1]
 
     steps:
     - uses: actions/checkout@v3
@@ -28,7 +32,7 @@ jobs:
         python -m pip install --upgrade pip
         #pip install flake8 pytest
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        pip install Django==3.2
+        pip install Django==${{ matrix.django-version }}
         pip install django-widget-tweaks==1.4.8
     - name: Test
       run: |
