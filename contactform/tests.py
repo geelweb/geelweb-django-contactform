@@ -3,6 +3,7 @@ from django.template import Template, RequestContext
 from django.test import RequestFactory, TestCase, override_settings
 from django.urls import reverse
 from .forms import ContactForm
+from unittest.mock import MagicMock, patch
 
 class ContactTestCase(TestCase):
     def test_form_displayed(self):
@@ -104,6 +105,54 @@ class ContactTestCase(TestCase):
         resp = self.client.get(reverse('contactform:index'))
         self.assertContains(resp, 'csrfmiddlewaretoken', status_code=200)
         self.assertNotContains(resp, '<h3>Contact us</h3>', status_code=200)
+
+    @override_settings(CONTACTFORM_RECIPIENTS=['contact@example.com'])
+    @override_settings(GOOGLE_RECAPTCHA_ENABLED=True)
+    @override_settings(GOOGLE_RECAPTCHA_SECRET='recaptcha-secret')
+    @patch('contactform.views.requests')
+    def test_post_with_invalid_recaptcha(self, mock_requests):
+        """ Tests than the email is not sent where recaptcha fail the
+        validation
+        """
+
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {'success': False}
+        mock_requests.post.return_value = mock_response
+
+        resp = self.client.post(reverse('contactform:index'), {
+            'email': 'me@example.com',
+            'phone': '06 00 00 00 00',
+            'comment': 'This is my message content',
+            'g-recaptcha-response': 'abcdefgh'})
+
+        self.assertEqual(len(mail.outbox), 0)
+
+        self.assertContains(resp, 'Thanks for your message', status_code=200)
+
+    @override_settings(CONTACTFORM_RECIPIENTS=['contact@example.com'])
+    @override_settings(GOOGLE_RECAPTCHA_ENABLED=True)
+    @override_settings(GOOGLE_RECAPTCHA_SECRET='recaptcha-secret')
+    @patch('contactform.views.requests')
+    def test_post_with_valid_recaptcha(self, mock_requests):
+        """ Tests than the email is not sent where recaptcha fail the
+        validation
+        """
+
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {'success': True}
+        mock_requests.post.return_value = mock_response
+
+        resp = self.client.post(reverse('contactform:index'), {
+            'email': 'me@example.com',
+            'phone': '06 00 00 00 00',
+            'comment': 'This is my message content',
+            'g-recaptcha-response': 'abcdefgh'})
+
+        self.assertEqual(len(mail.outbox), 1)
+
+        self.assertContains(resp, 'Thanks for your message', status_code=200)
 
 
 class ContactFormTagTest(TestCase):

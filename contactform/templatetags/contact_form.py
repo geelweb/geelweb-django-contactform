@@ -42,7 +42,7 @@ def contact_form_btn(label, form_id):
         btn_attrs['type'] = 'submit'
 
     btn = """<button %s>%s</button>""" % (
-        ' '.join(['%s="%s"' % (k, btn_attrs[k]) for k in btn_attrs if btn_attrs[k] != '']),
+        ' '.join(['%s="%s"' % (k, btn_attrs[k].strip()) for k in btn_attrs if btn_attrs[k] != '']),
         label)
 
     if recaptcha_enabled:

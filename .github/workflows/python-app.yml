@@ -30,6 +30,7 @@ jobs:
         #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         pip install Django==3.2
         pip install django-widget-tweaks==1.4.8
+        pip install requests
     - name: Test
       run: |
         python runtests.py
