@@ -123,7 +123,8 @@ class ContactTestCase(TestCase):
         resp = self.client.post(reverse('contactform:index'), {
             'email': 'me@example.com',
             'phone': '06 00 00 00 00',
-            'comment': 'This is my message content'})
+            'comment': 'This is my message content',
+            'g-recaptcha-response': 'abcdefgh'})
 
         self.assertEqual(len(mail.outbox), 0)
 
@@ -146,7 +147,8 @@ class ContactTestCase(TestCase):
         resp = self.client.post(reverse('contactform:index'), {
             'email': 'me@example.com',
             'phone': '06 00 00 00 00',
-            'comment': 'This is my message content'})
+            'comment': 'This is my message content',
+            'g-recaptcha-response': 'abcdefgh'})
 
         self.assertEqual(len(mail.outbox), 1)
 
